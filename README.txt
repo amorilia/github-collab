@@ -15,9 +15,11 @@ so on, are considered temporary, to be merged in "develop" (for
 
 A reminder of git flow principles:
 
-* feature branches are started from develop, and merged into develop
-* release branches are started from develop, and merged into master;
-  right after, master is tagged, and merged into develop
+* feature branches are started from develop,
+  and merged (``--no-ff``, i.e. non-fast-forward) into develop
+* release branches are started from develop,
+  and merged (``--no-ff``, i.e. non-fast-forward) into master;
+  right after, master is tagged, and merged into develop (can be fast-forward)
 
 Walkthrough
 ===========
@@ -73,7 +75,9 @@ Now, she can start her feature branch with::
 Use descriptive feature names; long feature names are fine. Clarity
 prevails.
 
-TODO rebase and forced push
+.. todo::
+
+   Describe rebase and forced push.
 
 Feature review and merge
 ------------------------
@@ -83,9 +87,15 @@ decides that the feature branch is useful and stable enough to be
 merged into "develop". As it turns out, Charlie is willing to lend a
 helping hand, and review her code for any obvious typos or errors.
 
+Publish feature
+~~~~~~~~~~~~~~~
+
 First, she pushes her feature branch to her remote github repository::
 
     git push origin feature/name_of_feature
+
+Option 1: Pull request against Charlie's repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Now, before she can do a pull request on github, she must ensure that
 Charlie's develop branch is up to date with hers (or
@@ -104,6 +114,7 @@ following command::
 
 where it is assumed that Charlie set up the remotes alice, bob, and
 daisy, as described earlier.
+If Charlie is not available to run the above commands, see Option 2.
 
 Now, Alice visits her helloworld github page, and sets up a pull
 request, with:
@@ -116,6 +127,32 @@ request, with:
 Alice summarizes the feature in one sentence in the title (this will be
 part of the merge commit message if approved), and any necessary
 comments in the description.
+
+Option 2: Pull request against Alice's own repository
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If Charlie's develop branch on github is not up-to-date,
+and Charlie is not immediately available to run the above commands,
+then it is also possible for Alice to set up the pull request
+against her own github repository:
+
+* base repo: alice/helloworld
+* base branch: develop
+* head repo: alice/helloworld
+* head branch: feature/name_of_feature
+
+Again,
+Alice summarizes the feature in one sentence in the title (this will be
+part of the merge commit message if approved), and any necessary
+comments in the description.
+
+To make sure that Charlie gets notified of the pull request, she CCs Charlie
+by mentioning ``@charlie`` in the description of the pull request
+(assuming that ``charlie`` is Charlie's github login name;
+see https://github.com/blog/821).
+
+Review
+~~~~~~
 
 Next, Charlie visits her helloworld github page, inspects the commits
 and the diff. If everything looks ok, she can check out Alice's
@@ -130,14 +167,26 @@ github pull request page. Alice can then make further commits to
 address those issues, and push her feature branch, until Charlie is
 happy with everything.
 
-When Charlie is happy with the feature branch, she clicks
-**Merge pull request** on the github pull request page.
+Merge
+~~~~~
+
+When Charlie is happy with the feature branch,
+in case of Option 1,
+she clicks **Merge pull request** on the github pull request page.
+In case of Option 2, Charlie simply comments `@alice Ok to merge.'
+on the pull request, and Alice clicks **Merge pull request**.
 
 Note: if the feature branch cannot be merged automatically,
 this option may be disabled. In that case, either Charlie can deal
 with the merge conflicts locally, or Alice can rebase her feature
 branch onto the latest develop branch.
-TODO document this scenario in separate section
+
+.. todo::
+
+   Document merge conflict strategies in separate section.
+
+Synchronize and cleanup
+~~~~~~~~~~~~~~~~~~~~~~~
 
 Now, everyone, including Alice and Charlie, will want to update their
 develop branches, locally and remotely, to point latest newest hottest
@@ -167,3 +216,32 @@ unless she is sure that it contains nothing that is not merged
 elsewhere yet.
 
 Rinse and repeat!
+
+Release review and merge
+------------------------
+
+Basically, everything is as with a feature branch, with a few differences:
+
+#. Convention for naming the branch::
+
+       git checkout develop -b release/x.x.x
+
+   where ``x.x.x`` is the full version
+   (can also include alpha, beta, or candidate tags, e.g. ``1.0.6b2``).
+
+#. A release branch is merged into master instead of develop::
+
+   * base repo: charlie/helloworld
+   * base branch: master
+   * head repo: alice/helloworld
+   * head branch: release/x.x.x
+
+#. The master branch is tagged after merge.
+
+#. The master branch is merged into develop after merge.
+
+#. Everyone has to sync master and develop branches.
+
+.. todo::
+
+   Add details of git commands.
