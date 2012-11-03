@@ -1,6 +1,6 @@
 github-collab documents one possible way for efficient decentralized collaboration over github.
 
-Branching Model
+Branching model
 ===============
 
 The git flow branching model (or some variant thereof) is assumed; see
@@ -229,7 +229,7 @@ Basically, everything is as with a feature branch, with a few differences:
    where ``x.x.x`` is the full version
    (can also include alpha, beta, or candidate tags, e.g. ``1.0.6b2``).
 
-#. A release branch is merged into master instead of develop::
+#. A release branch is merged into master instead of develop:
 
    * base repo: charlie/helloworld
    * base branch: master
