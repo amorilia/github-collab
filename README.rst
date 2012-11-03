@@ -102,8 +102,9 @@ Charlie's develop branch is up to date with hers (or
 further). Otherwise, any commits that weren't part of the feature, but
 committed after Charlie's develop branch, would also turn up on the
 pull request, which is usually not what you want as it makes the
-review diff longer than necessary. So, she asks Charlie to run the
-following command::
+review diff longer than necessary.
+So, in case Charlie's develop is not up-to-date,
+Alice asks Charlie to run the following commands::
 
     git remote update --prune
     git checkout develop
@@ -112,7 +113,7 @@ following command::
     git merge daisy/develop
     git push origin develop
 
-where it is assumed that Charlie set up the remotes alice, bob, and
+where it is assumed that Charlie has set up the remotes alice, bob, and
 daisy, as described earlier.
 If Charlie's develop branch is not up-to-date,
 and Charlie is not available to run the above commands, see Option 2.
