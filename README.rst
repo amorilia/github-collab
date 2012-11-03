@@ -236,9 +236,21 @@ Basically, everything is as with a feature branch, with a few differences:
    * head repo: alice/helloworld
    * head branch: release/x.x.x
 
-#. The master branch is tagged after merge.
+#. The master branch is tagged after merge::
 
-#. The master branch is merged into develop after merge.
+       git fetch origin
+       git checkout master
+       git merge origin/master
+       git tag -a -m "Tagging version x.x.x." x.x.x
+       git push origin --tags
+
+#. The master branch is merged into develop after merge::
+
+       git fetch origin
+       git checkout develop
+       git merge origin/develop
+       git merge origin/master
+       git push origin develop
 
 #. Everyone has to sync master and develop branches.
 
