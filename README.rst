@@ -114,7 +114,8 @@ following command::
 
 where it is assumed that Charlie set up the remotes alice, bob, and
 daisy, as described earlier.
-If Charlie is not available to run the above commands, see Option 2.
+If Charlie's develop branch is not up-to-date,
+and Charlie is not available to run the above commands, see Option 2.
 
 Now, Alice visits her helloworld github page, and sets up a pull
 request, with:
