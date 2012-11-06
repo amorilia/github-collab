@@ -90,14 +90,14 @@ helping hand, and review her code for any obvious typos or errors.
 Publish feature
 ~~~~~~~~~~~~~~~
 
-First, she pushes her feature branch to her remote github repository::
+First, Alice pushes her feature branch to her remote github repository::
 
     git push origin feature/name_of_feature
 
 Option 1: Pull request against Charlie's repository
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Now, before she can do a pull request on github, she must ensure that
+Now, before Alice can do a pull request on github, she must ensure that
 Charlie's develop branch is up to date with hers (or
 further). Otherwise, any commits that weren't part of the feature, but
 committed after Charlie's develop branch, would also turn up on the
