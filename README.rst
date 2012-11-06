@@ -40,7 +40,7 @@ Initial setup
 -------------
 
 Alice decides to join a project called helloworld. First, she forks it
-on github, and creates a local clone of here remote github
+on github, and creates a local clone of her remote github
 repository::
 
     git clone git@github.com:alice/helloworld.git
